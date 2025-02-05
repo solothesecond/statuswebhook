@@ -11,4 +11,5 @@ a bash script that will try to restart your site if it goes down, while also sen
 * [netcup](https://www.netcup.com/) - the vps provider that gave me the idea for this
 
 ## other notes
-- completely free to use, please just have credit to me
+- this repo is licensed under a Creative Commons Attribution 4.0 International License
+- that pretty much means you can do whatever, just credit me somehow
