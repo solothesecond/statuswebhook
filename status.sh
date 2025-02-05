@@ -14,7 +14,7 @@ JSON_PAYLOAD=$(jq -n --arg title "The website is online!" \
                      --arg description "<@&$ROLE_ID> The website is online!" \
                      --arg color "65280" \
                      --arg timestamp "$TIMESTAMP" \
-                     --arg footer "webhook by @szvy on github" \
+                     --arg footer "webhook by @szvy on github - https://github.com/szvy/statuswebhook" \
                      '{
                         "content": "<@&'"$ROLE_ID"'>",
                         "embeds": [ {
@@ -43,7 +43,7 @@ while true; do
             --arg description "The website is down! Trying to bring online..." \
             --arg color "16711680" \
             --arg timestamp "$TIMESTAMP" \
-            --arg footer "webhook by @szvy on github" \
+            --arg footer "webhook by @szvy on github - https://github.com/szvy/statuswebhook" \
             '{
                 "content": $content,
                 "embeds": [
@@ -71,7 +71,7 @@ while true; do
                              --arg description "<@&$ROLE_ID> The website is online!" \
                              --arg color "65280" \
                              --arg timestamp "$TIMESTAMP" \
-                             --arg footer "webhook by @szvy on github" \
+                             --arg footer "webhook by @szvy on github - https://github.com/szvy/statuswebhook" \
                              '{
                                 "content": "<@&'"$ROLE_ID"'>",
                                 "embeds": [ {
