@@ -5,16 +5,15 @@
 # also make sure you read the readme on the github
 # https://github.com/szvy/statuswebhook
 
-DISCORD_WEBHOOK_URL="YOUR WEBHOOK HERE" # webhook to send status updates to
+DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1354566897986965675/YZHzrNEoOtSSxkICs9bRlp-H41pHH2SfxQN5hL_JLuLb7xYzTH6MUjTqYX4KCrv9F_p8" # webhook to send status updates to
 PREVIOUS_STATUS="UNKNOWN" # tracks the previous status to prevent sending multiple alerts
-ROLE_ID="YOUR ROLE ID HERE" # role for pinging members
+ROLE_ID="1354567269652627628" # role for pinging members
 
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ") # message for webhook if the site is up
 JSON_PAYLOAD=$(jq -n --arg title "The website is online!" \
                      --arg description "<@&$ROLE_ID> The website is online!" \
                      --arg color "65280" \
                      --arg timestamp "$TIMESTAMP" \
-                     --arg footer "webhook by @szvy on github - https://github.com/szvy/statuswebhook" \
                      '{
                         "content": "<@&'"$ROLE_ID"'>",
                         "embeds": [ {
@@ -31,7 +30,7 @@ JSON_PAYLOAD=$(jq -n --arg title "The website is online!" \
 curl -H "Content-Type: application/json" -X POST -d "$JSON_PAYLOAD" "$DISCORD_WEBHOOK_URL" # sends a "site is up" message on start
 
 while true; do
-    RESPONSE=$(curl -s "https://www.operate.lol/api/check?site=PUTYOURSITEHERE") # put your website in the "site=" area, make sure to include https or http
+    RESPONSE=$(curl -s "https://www.operate.lol/api/check?site=https://spedcentral.fun/") # put your website in the "site=" area, make sure to include https or http
     STATUS=$(echo "$RESPONSE" | jq -r '.status')
 
     TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
@@ -43,7 +42,6 @@ while true; do
             --arg description "The website is down! Trying to bring online..." \
             --arg color "16711680" \
             --arg timestamp "$TIMESTAMP" \
-            --arg footer "webhook by @szvy on github - https://github.com/szvy/statuswebhook" \
             '{
                 "content": $content,
                 "embeds": [
@@ -71,7 +69,6 @@ while true; do
                              --arg description "<@&$ROLE_ID> The website is online!" \
                              --arg color "65280" \
                              --arg timestamp "$TIMESTAMP" \
-                             --arg footer "webhook by @szvy on github - https://github.com/szvy/statuswebhook" \
                              '{
                                 "content": "<@&'"$ROLE_ID"'>",
                                 "embeds": [ {
